@@ -24,13 +24,14 @@ func run() error {
 
 	fmt.Println(filename)
 
+	// fmt.Println("::group::My title")
+
 	fmt.Printf("::add-matcher::%s\n", filename)
-	fmt.Println("::group::My title")
 
 	fmt.Println("file=path/to/filea.go, line=10, col=4, linter=XXX, severity=error, message=sss ssssd sd")
 	fmt.Println("file=path/to/fileb.go, line=1, col=4, linter=YYY, severity=warning, message=fdsqfds fdsq")
 
-	fmt.Println("::endgroup::")
+	// fmt.Println("::endgroup::")
 
 	// fmt.Println("::remove-matcher owner=golangci-lint-action::")
 
@@ -39,18 +40,22 @@ func run() error {
 
 func storeProblemMatcher() (string, error) {
 	prob := ProblemMatcher{
-		Owner:    "golangci-lint-action",
-		Severity: "error",
-		Pattern: []Pattern{
+		Matchers: []Matcher{
 			{
-				Regexp:   `^file=(.+), line=(\d+), col=(\d+), linter=(.+), severity=(.+), message=(.+)$`,
-				File:     1,
-				FromPath: 0, // ?
-				Line:     2,
-				Column:   3,
-				Severity: 5,
-				Code:     4,
-				Message:  6,
+				Owner:    "golangci-lint-action",
+				Severity: "error",
+				Pattern: []Pattern{
+					{
+						Regexp:   `^file=(.+), line=(\d+), col=(\d+), linter=(.+), severity=(.+), message=(.+)$`,
+						File:     1,
+						FromPath: 0, // ?
+						Line:     2,
+						Column:   3,
+						Severity: 5,
+						Code:     4,
+						Message:  6,
+					},
+				},
 			},
 		},
 	}
@@ -71,6 +76,10 @@ func storeProblemMatcher() (string, error) {
 }
 
 type ProblemMatcher struct {
+	Matchers []Matcher `json:"problemMatcher,omitempty"`
+}
+
+type Matcher struct {
 	// Owner an ID field that can be used to remove or replace the problem matcher.
 	// **required**
 	Owner string `json:"owner,omitempty"`
