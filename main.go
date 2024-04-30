@@ -31,8 +31,8 @@ func run() error {
 
 	fmt.Printf("::add-matcher::%s\n", filename)
 
-	fmt.Println("file=path/to/filea.go, line=10, col=4, linter=XXX, severity=error, message=sss ssssd sd")
-	fmt.Println("file=path/to/fileb.go, line=1, col=4, linter=YYY, severity=warning, message=fdsqfds fdsq")
+	fmt.Println("file=path/to/filea.go, line=10, col=4, severity=error, message=sss ssssd sd")
+	fmt.Println("file=path/to/fileb.go, line=1, col=4, severity=warning, message=fdsqfds fdsq")
 
 	fmt.Println("::endgroup::")
 
@@ -49,14 +49,12 @@ func storeProblemMatcher() (string, error) {
 				Severity: "error",
 				Pattern: []Pattern{
 					{
-						Regexp:   `^file=(.+), line=(\d+), col=(\d+), linter=(.+), severity=(.+), message=(.+)$`,
+						Regexp:   `^file=(.+), line=(\d+), col=(\d+), severity=(.+), message=(.+)$`,
 						File:     1,
-						FromPath: 0, // ?
 						Line:     2,
 						Column:   3,
-						Severity: 5,
-						Code:     4,
-						Message:  6,
+						Severity: 4,
+						Message:  5,
 					},
 				},
 			},
