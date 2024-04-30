@@ -20,9 +20,12 @@ func run() error {
 		return err
 	}
 
-	defer os.RemoveAll(filename)
+	// Note: the file with the problem matcher definition should not be removed.
+	//
+	// Error: Unable to process command '::add-matcher::/tmp/golangci-lint-action-1296491320-problem-matchers.json' successfully.
+	// Error: Could not find file '/tmp/golangci-lint-action-1296491320-problem-matchers.json'.
 
-	fmt.Println(filename)
+	fmt.Printf("::debug::problem matcher definition file: %s\n", filename)
 
 	fmt.Println("::group::Linting Issues")
 
