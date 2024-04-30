@@ -20,7 +20,7 @@ func run() error {
 		return err
 	}
 
-	defer os.RemoveAll(filename)
+	// defer os.RemoveAll(filename)
 
 	fmt.Println(filename)
 
