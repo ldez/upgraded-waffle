@@ -1,0 +1,26 @@
+name: Push
+
+on:
+  push:
+
+jobs:
+  dump_contexts_to_log:
+    runs-on: ${{ matrix.os }}
+    env:
+      CGO_ENABLED: 0
+
+    strategy:
+      matrix:
+        go-version: [ stable ]
+        os: [ubuntu-latest] # [ubuntu-latest, macos-latest, windows-latest]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up Go ${{ matrix.go-version }}
+        uses: actions/setup-go@v5
+        with:
+          go-version: ${{ matrix.go-version }}
+
+      - name: Run
+        run: make
