@@ -29,7 +29,7 @@ func run() error {
 	fmt.Println("file=path/to/filea.go, line=10, col=4, linter=XXX, severity=error, message=sss ssssd sd")
 	fmt.Println("file=path/to/fileb.go, line=1, col=4, linter=YYY, severity=warning, message=fdsqfds fdsq")
 
-	fmt.Println("::remove-matcher owner=golangci-lint-action::")
+	// fmt.Println("::remove-matcher owner=golangci-lint-action::")
 
 	return nil
 }
