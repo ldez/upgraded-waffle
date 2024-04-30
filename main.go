@@ -24,14 +24,14 @@ func run() error {
 
 	fmt.Println(filename)
 
-	// fmt.Println("::group::My title")
+	fmt.Println("::group::My title")
 
 	fmt.Printf("::add-matcher::%s\n", filename)
 
 	fmt.Println("file=path/to/filea.go, line=10, col=4, linter=XXX, severity=error, message=sss ssssd sd")
 	fmt.Println("file=path/to/fileb.go, line=1, col=4, linter=YYY, severity=warning, message=fdsqfds fdsq")
 
-	// fmt.Println("::endgroup::")
+	fmt.Println("::endgroup::")
 
 	fmt.Println("::remove-matcher owner=golangci-lint-action::")
 
