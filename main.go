@@ -33,7 +33,7 @@ func run() error {
 
 	// fmt.Println("::endgroup::")
 
-	// fmt.Println("::remove-matcher owner=golangci-lint-action::")
+	fmt.Println("::remove-matcher owner=golangci-lint-action::")
 
 	return nil
 }
