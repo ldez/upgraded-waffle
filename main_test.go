@@ -17,9 +17,9 @@ func TestName(t *testing.T) {
 	exp := regexp.MustCompile(pattern.Regexp)
 
 	lines := []string{
-		"error\tpath/to/filea.go:10:4:\tsss ssssd sd",
-		"warning\tpath/to/fileb.go:1:4:\tfdsqfds fdsq",
-		"error\tpath/to/fileb.go:40:4:\tFoo bar",
+		"error\tpath/to/filea.go:10:4:\tsome issue (sample-linter)",
+		"warning\tpath/to/fileb.go:1:4:\tsome issue (sample-linter)",
+		"error\tpath/to/fileb.go:40:\tFoo bar",
 	}
 
 	for _, line := range lines {
@@ -28,7 +28,7 @@ func TestName(t *testing.T) {
 	}
 }
 
-func createReplacement(pattern Pattern) string {
+func createReplacement(pattern GitHubPattern) string {
 	var repl []string
 
 	if pattern.File > 0 {
