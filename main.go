@@ -31,9 +31,9 @@ func run() error {
 
 	fmt.Printf("::add-matcher::%s\n", filename)
 
-	fmt.Println("file=path/to/filea.go:10:4:\t[error]\tsss ssssd sd")
-	fmt.Println("file=path/to/fileb.go:1:4:\t[warning]\tfdsqfds fdsq")
-	fmt.Println("file=path/to/fileb.go:40:4:\t[error]\tFoo bar")
+	fmt.Println("path/to/filea.go:10:4:\terror\tsss ssssd sd")
+	fmt.Println("path/to/fileb.go:1:4:\twarning\tfdsqfds fdsq")
+	fmt.Println("path/to/fileb.go:40:4:\terror\tFoo bar")
 
 	fmt.Println("::endgroup::")
 
