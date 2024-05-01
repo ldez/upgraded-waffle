@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"time"
 )
 
 func main() {
@@ -38,6 +39,9 @@ func run() error {
 	fmt.Println("::endgroup::")
 
 	fmt.Println("::remove-matcher owner=golangci-lint-action::")
+
+	time.Sleep(200 * time.Millisecond)
+	os.RemoveAll(filename)
 
 	return nil
 }
