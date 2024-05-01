@@ -21,7 +21,7 @@ func TestName(t *testing.T) {
 	lines := []string{
 		"error\tpath/to/filea.go:10:4:\tsome issue (sample-linter)",
 		"warning\tpath/to/fileb.go:1:4:\tsome issue (sample-linter)",
-		"error\tpath/to/fileb.go:40:\tFoo bar",
+		"error\t\tpath/to/fileb.go:40:\t\tFoo bar",
 	}
 
 	for _, line := range lines {
