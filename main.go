@@ -66,7 +66,7 @@ func generateProblemMatcher() ProblemMatcher {
 				Severity: "error",
 				Pattern: []Pattern{
 					{
-						Regexp:   `^file=([^:]+):(\d+):(\d+):\t\[(.+)\]\t(.+)$`,
+						Regexp:   `^([^\t]+)\t(\d+):(\d+):\t\[(.+)\]\t(.+)$`,
 						File:     1,
 						Line:     2,
 						Column:   3,
