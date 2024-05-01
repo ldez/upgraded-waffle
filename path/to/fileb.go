@@ -2,10 +2,10 @@ package to
 
 import "fmt"
 
-func Foo() {
+func Bar() {
 	fmt.Println("Hello")
 }
 
-func Bar() {
+func Foo() {
 	fmt.Println("Hello")
 }
