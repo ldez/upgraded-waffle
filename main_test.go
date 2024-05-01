@@ -1,8 +1,8 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
-	"os"
 	"regexp"
 	"strings"
 	"testing"
@@ -69,12 +69,31 @@ func createReplacement(pattern GitHubPattern) string {
 }
 
 func TestWriter(t *testing.T) {
-	w := tabwriter.NewWriter(os.Stdout, 0, 0, 2, ' ', 0)
+	var buf bytes.Buffer
+	w := tabwriter.NewWriter(&buf, 0, 0, 2, ' ', 0)
 
 	fmt.Fprintln(w, "error\tpath/to/filea.go:10:4:\tsss ssssd sd")
 	fmt.Fprintln(w, "warning\tpath/to/fileb.go:1:4:\tfdsqfds fdsq")
 	fmt.Fprintln(w, "error\tpath/to/fileb.go:40:\tFoo bar")
 
 	w.Flush()
+
+	prob := generateProblemMatcher()
+
+	pattern := prob.Matchers[0].Pattern[0]
+
+	createReplacement(pattern)
+
+	exp := regexp.MustCompile(pattern.Regexp)
+
+	lines := strings.Split(buf.String(), "\n")
+
+	for _, line := range lines {
+		fmt.Println()
+		fmt.Println(line)
+		fmt.Println(exp.MatchString(line))
+
+		fmt.Println(exp.ReplaceAllString(line, createReplacement(pattern)))
+	}
 
 }

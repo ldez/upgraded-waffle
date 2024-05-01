@@ -76,7 +76,7 @@ func generateProblemMatcher() GitHubProblemMatchers {
 				Severity: "error",
 				Pattern: []GitHubPattern{
 					{
-						Regexp:   `^([^\t]+)\t+([^\t]+):(\d+):(?:(\d+):)?\t+(.+)$`,
+						Regexp:   `^([^\t]+)[ \t]+([^\t]+):(\d+):(?:(\d+):)?[ \t]+(.+)$`,
 						Severity: 1,
 						File:     2,
 						Line:     3,
