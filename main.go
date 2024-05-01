@@ -31,9 +31,9 @@ func run() error {
 
 	fmt.Printf("::add-matcher::%s\n", filename)
 
-	fmt.Println("path/to/filea.go:10:4:\t[error]\tsss ssssd sd")
-	fmt.Println("path/to/fileb.go:1:4:\t[warning]\tfdsqfds fdsq")
-	fmt.Println("path/to/fileb.go:40:4:\t[error]\tFoo bar")
+	fmt.Println("file=path/to/filea.go:10:4:\t[error]\tsss ssssd sd")
+	fmt.Println("file=path/to/fileb.go:1:4:\t[warning]\tfdsqfds fdsq")
+	fmt.Println("file=path/to/fileb.go:40:4:\t[error]\tFoo bar")
 
 	fmt.Println("::endgroup::")
 
@@ -43,14 +43,30 @@ func run() error {
 }
 
 func storeProblemMatcher() (string, error) {
-	prob := ProblemMatcher{
+	file, err := os.CreateTemp("", "golangci-lint-action-*-problem-matchers.json")
+	if err != nil {
+		return "", err
+	}
+
+	defer file.Close()
+
+	err = json.NewEncoder(file).Encode(generateProblemMatcher())
+	if err != nil {
+		return "", err
+	}
+
+	return file.Name(), nil
+}
+
+func generateProblemMatcher() ProblemMatcher {
+	return ProblemMatcher{
 		Matchers: []Matcher{
 			{
 				Owner:    "golangci-lint-action",
 				Severity: "error",
 				Pattern: []Pattern{
 					{
-						Regexp:   `^(.+):(\d+):(\d+):\t\[(.+)\]\t(.+)$`,
+						Regexp:   `^file=(.+):(\d+):(\d+):\t\[(.+)\]\t(.+)$`,
 						File:     1,
 						Line:     2,
 						Column:   3,
@@ -61,20 +77,6 @@ func storeProblemMatcher() (string, error) {
 			},
 		},
 	}
-
-	file, err := os.CreateTemp("", "golangci-lint-action-*-problem-matchers.json")
-	if err != nil {
-		return "", err
-	}
-
-	defer file.Close()
-
-	err = json.NewEncoder(file).Encode(prob)
-	if err != nil {
-		return "", err
-	}
-
-	return file.Name(), nil
 }
 
 type ProblemMatcher struct {
