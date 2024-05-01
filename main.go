@@ -24,7 +24,7 @@ func run() error {
 	//
 	// Error: Unable to process command '::add-matcher::/tmp/golangci-lint-action-1296491320-problem-matchers.json' successfully.
 	// Error: Could not find file '/tmp/golangci-lint-action-1296491320-problem-matchers.json'.
-	defer os.RemoveAll(filename)
+	// defer os.RemoveAll(filename)
 
 	fmt.Printf("::debug::problem matcher definition file: %s\n", filename)
 
@@ -32,9 +32,9 @@ func run() error {
 
 	fmt.Printf("::add-matcher::%s\n", filename)
 
-	fmt.Println("path/to/filea.go:10:4:\terror\tsss ssssd sd")
-	fmt.Println("path/to/fileb.go:1:4:\twarning\tfdsqfds fdsq")
-	fmt.Println("path/to/fileb.go:40:4:\terror\tFoo bar")
+	fmt.Println("error\tpath/to/filea.go:10:4:\tsss ssssd sd")
+	fmt.Println("warning\tpath/to/fileb.go:1:4:\tfdsqfds fdsq")
+	fmt.Println("error\tpath/to/fileb.go:40:4:\tFoo bar")
 
 	fmt.Println("::endgroup::")
 
@@ -69,11 +69,11 @@ func generateProblemMatcher() ProblemMatcher {
 				Severity: "error",
 				Pattern: []Pattern{
 					{
-						Regexp:   `^([^\t]+):(\d+):(\d+):\t([^\t]+)\t(.+)$`,
-						File:     1,
-						Line:     2,
-						Column:   3,
-						Severity: 4,
+						Regexp:   `^([^\t]+)\t([^\t]+):(\d+):(\d+):\t(.+)$`,
+						File:     2,
+						Line:     3,
+						Column:   4,
+						Severity: 1,
 						Message:  5,
 					},
 				},

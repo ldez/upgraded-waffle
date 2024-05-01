@@ -17,9 +17,9 @@ func TestName(t *testing.T) {
 	exp := regexp.MustCompile(pattern.Regexp)
 
 	lines := []string{
-		"path/to/filea.go:10:4:\terror\tsss ssssd sd",
-		"path/to/fileb.go:1:4:\twarning\tfdsqfds fdsq",
-		"path/to/fileb.go:40:4:\terror\tFoo bar",
+		"error\tpath/to/filea.go:10:4:\tsss ssssd sd",
+		"warning\tpath/to/fileb.go:1:4:\tfdsqfds fdsq",
+		"error\tpath/to/fileb.go:40:4:\tFoo bar",
 	}
 
 	for _, line := range lines {
