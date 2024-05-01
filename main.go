@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"time"
 )
 
 func main() {
@@ -25,6 +24,7 @@ func run() error {
 	//
 	// Error: Unable to process command '::add-matcher::/tmp/golangci-lint-action-1296491320-problem-matchers.json' successfully.
 	// Error: Could not find file '/tmp/golangci-lint-action-1296491320-problem-matchers.json'.
+	defer os.RemoveAll(filename)
 
 	fmt.Printf("::debug::problem matcher definition file: %s\n", filename)
 
@@ -40,8 +40,7 @@ func run() error {
 
 	fmt.Println("::remove-matcher owner=golangci-lint-action::")
 
-	time.Sleep(200 * time.Millisecond)
-	os.RemoveAll(filename)
+	// time.Sleep(200 * time.Millisecond)
 
 	return nil
 }
