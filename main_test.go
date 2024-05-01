@@ -2,9 +2,11 @@ package main
 
 import (
 	"fmt"
+	"os"
 	"regexp"
 	"strings"
 	"testing"
+	"text/tabwriter"
 )
 
 func TestName(t *testing.T) {
@@ -64,4 +66,15 @@ func createReplacement(pattern GitHubPattern) string {
 	}
 
 	return strings.Join(repl, "\n")
+}
+
+func TestWriter(t *testing.T) {
+	w := tabwriter.NewWriter(os.Stdout, 0, 0, 2, ' ', 0)
+
+	fmt.Fprintln(w, "error\tpath/to/filea.go:10:4:\tsss ssssd sd")
+	fmt.Fprintln(w, "warning\tpath/to/fileb.go:1:4:\tfdsqfds fdsq")
+	fmt.Fprintln(w, "error\tpath/to/fileb.go:40:\tFoo bar")
+
+	w.Flush()
+
 }
