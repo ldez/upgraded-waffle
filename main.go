@@ -36,8 +36,8 @@ func run() error {
 	w := tabwriter.NewWriter(os.Stdout, 0, 0, 2, ' ', 0)
 
 	fmt.Fprintln(w, "error\tpath/to/filea.go:10:4:\tsome issue (sample-linter)")
-	fmt.Fprintln(w, "warning\tpath/to/fileb.go:1:4:\tsome issue (sample-linter)")
-	fmt.Fprintln(w, "error\tpath/to/fileb.go:40:\tFoo bar")
+	fmt.Fprintln(w, "warning\tpath/to/fileb.go:4:4:\tother issue (sample-linter)")
+	fmt.Fprintln(w, "error\tpath/to/fileb.go:5:\tFoo bar")
 
 	w.Flush()
 
