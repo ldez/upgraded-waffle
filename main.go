@@ -42,7 +42,7 @@ func run() error {
 
 	fmt.Println("error\tpath/to/filea.go:10:4:\tsss ssssd sd")
 	fmt.Println("warning\tpath/to/fileb.go:1:4:\tfdsqfds fdsq")
-	fmt.Println("error    path/to/fileb.go:40:\tFoo bar")
+	fmt.Println("error\t\tpath/to/fileb.go:40:\tFoo bar")
 
 	// fmt.Println("::endgroup::")
 
