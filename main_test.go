@@ -73,8 +73,8 @@ func TestWriter(t *testing.T) {
 	w := tabwriter.NewWriter(&buf, 0, 0, 2, ' ', 0)
 
 	fmt.Fprintln(w, "error\tpath/to/filea.go:10:4:\tsss ssssd sd")
-	fmt.Fprintln(w, "warning\tpath/to/fileb.go:4:4:\tfdsqfds fdsq")
-	fmt.Fprintln(w, "error\tpath/to/fileb.go:10:\tFoo bar")
+	fmt.Fprintln(w, "warning\tpath/to/fileb.go:5:4:\tfdsqfds fdsq")
+	fmt.Fprintln(w, "error\tpath/to/fileb.go:9:\tFoo bar")
 
 	w.Flush()
 
