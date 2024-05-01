@@ -28,7 +28,7 @@ func run() error {
 
 	fmt.Printf("::debug::problem matcher definition file: %s\n", filename)
 
-	fmt.Println("::group::Linting Issues")
+	// fmt.Println("::group::Linting Issues")
 
 	fmt.Printf("::add-matcher::%s\n", filename)
 
@@ -44,7 +44,7 @@ func run() error {
 	fmt.Println("warning\tpath/to/fileb.go:1:4:\tfdsqfds fdsq")
 	fmt.Println("error\t\tpath/to/fileb.go:40:\tFoo bar")
 
-	fmt.Println("::endgroup::")
+	// fmt.Println("::endgroup::")
 
 	fmt.Println("::remove-matcher owner=golangci-lint-action::")
 
@@ -76,10 +76,10 @@ func generateProblemMatcher() GitHubProblemMatchers {
 				Pattern: []GitHubPattern{
 					{
 						Regexp:   `^([^\t]+)\t+([^\t]+):(\d+):(?:(\d+):)?\t+(.+)$`,
+						Severity: 1,
 						File:     2,
 						Line:     3,
 						Column:   4,
-						Severity: 1,
 						Message:  5,
 					},
 				},
